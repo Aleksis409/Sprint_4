@@ -1,11 +1,13 @@
 package PageObject;
 
+    import org.hamcrest.MatcherAssert;
+    import static org.hamcrest.CoreMatchers.startsWith;
     import org.junit.Test;
     import org.junit.runner.RunWith;
     import org.junit.runners.Parameterized;
 
 
-    @RunWith(Parameterized.class)
+@RunWith(Parameterized.class)
 
 public class OrderScooterTest extends BaseTest {
 
@@ -20,6 +22,8 @@ public class OrderScooterTest extends BaseTest {
         private final String rentalPeriod;
         private final String scooterColor; // можно выбрать "black" или "grey", все остальное игнорируется
         private final String commentsForCourier;
+
+        private final static String orderHasBeenPlacedMessageText = "Номер заказа:";
 
 
         public OrderScooterTest(String positionOrderBottom, String name, String lastName, String address, String metroStation, String telefon,
@@ -69,7 +73,8 @@ public class OrderScooterTest extends BaseTest {
             secondOrderPage.inputCommentsForCourier(commentsForCourier);
             secondOrderPage.clickOrderButton();
             secondOrderPage.clickOrderButtonYes(); //в хроме баг - не нажимается кнопка "Да" в сообщении "Хотите оформить заказ"
-            secondOrderPage.orderHasBeenPlaced();
+            String actual= secondOrderPage.orderHasBeenPlaced();
+            MatcherAssert.assertThat("Нет сообщения \"Заказ оформлен\" с номером заказа", actual, startsWith(orderHasBeenPlacedMessageText));
         }
 }
 

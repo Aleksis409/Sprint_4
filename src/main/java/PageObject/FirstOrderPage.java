@@ -22,7 +22,7 @@ public class FirstOrderPage {
     private final By addressField =  By.xpath(".//input[@placeholder='* Адрес: куда привезти заказ']");
 
     //Поле "* Станция метро"
-    private final By MetroStationField = By.xpath(".//input[@placeholder='* Станция метро']");
+    private final By metroStationField = By.xpath(".//input[@placeholder='* Станция метро']");
 
     //Поле "* Телефон: на него позвонит курьер"
     private final By telefonField =  By.xpath(".//input[@placeholder='* Телефон: на него позвонит курьер']");
@@ -49,9 +49,9 @@ public class FirstOrderPage {
 
     //заполнение поля "* Станция метро"
     public void inputMetroStation(String name) {
-        driver.findElement(MetroStationField).sendKeys(name);
+        driver.findElement(metroStationField).sendKeys(name);
         new WebDriverWait(driver, 3);
-        driver.findElement(MetroStationField).sendKeys("" + Keys.ARROW_DOWN + Keys.ENTER);
+        driver.findElement(metroStationField).sendKeys("" + Keys.ARROW_DOWN + Keys.ENTER);
     }
 
     //заполнения поля "* Телефон: на него позвонит курьер"

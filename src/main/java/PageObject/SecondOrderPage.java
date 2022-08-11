@@ -20,8 +20,8 @@ public class SecondOrderPage {
     //Поле "Комментарий для курьера"
     private final By commentsForCourierField =  By.xpath(".//input[@placeholder='Комментарий для курьера']");
 
-    //сообщение "Заказ оформлен"
-    private final By messageOrderPlaced = By.xpath(".//div[(@class='Order_ModalHeader__3FDaJ') and (text()='Заказ оформлен')]");
+    //элемент - текст сообщения "Заказ оформлен"
+    private final By messageOrderPlaced = By.xpath(".//div[@class='Order_Text__2broi']");
 
     //Кнопка "Заказать"
     private final By orderButton = By.xpath(".//button[@class='Button_Button__ra12g Button_Middle__1CSJM']");
@@ -64,8 +64,8 @@ public class SecondOrderPage {
         driver.findElement(orderButtonYes).click();
     }
 
-    //сообщение "Заказ оформлен"
-    public void orderHasBeenPlaced() {
-        driver.findElement(messageOrderPlaced);
+    //получение текста сообщения "Заказ оформлен"
+    public String orderHasBeenPlaced() {
+        return driver.findElement(messageOrderPlaced).getText();
     }
 }
